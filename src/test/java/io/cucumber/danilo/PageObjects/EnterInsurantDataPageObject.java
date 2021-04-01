@@ -1,6 +1,5 @@
 package io.cucumber.danilo.PageObjects;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,8 +25,9 @@ public class EnterInsurantDataPageObject {
     private WebElement buttonSpeeding;
     private WebElement nextEnterProductData;
 
-    public EnterInsurantDataPageObject(WebDriver driver){
+    public EnterInsurantDataPageObject(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, 10);
         this.carregarElementos();
     }
 
@@ -39,67 +39,67 @@ public class EnterInsurantDataPageObject {
         inputStreetAddress = driver.findElement(By.cssSelector("input[id='streetaddress']"));
         selectCountry = driver.findElement(By.cssSelector("select[id='country']"));
         optionCountry = driver.findElement(By.cssSelector("option[value='Brazil']"));
-        inputZipCode = driver.findElement(By.cssSelector("input[id='ZipCode']"));
+        inputZipCode = driver.findElement(By.cssSelector("input[id='zipcode']"));
         inputCity = driver.findElement(By.cssSelector("input[id='city']"));
         selectOccupation = driver.findElement(By.cssSelector("select[id='country']"));
         optionOccupation = driver.findElement(By.cssSelector("option[value='Employee']"));
-        buttonSpeeding = driver.findElement(By.cssSelector("input[id='speeding']"));
+        buttonSpeeding = driver.findElement(By.cssSelector("input[id='speeding'] + span[class='ideal-check']"));
         nextEnterProductData = driver.findElement(By.cssSelector("button[id='nextenterproductdata']"));
     }
 
-    public void preencheOCampoFirstName(String first){
+    public void preencheOCampoFirstName(String first) {
         wait.until(ExpectedConditions.visibilityOf(inputFirstName));
         this.inputFirstName.sendKeys(first);
     }
 
-    public void preencheOCampoLastName(String last){
+    public void preencheOCampoLastName(String last) {
         wait.until(ExpectedConditions.visibilityOf(inputLastName));
         this.inputLastName.sendKeys(last);
     }
 
-    public void preencheOCampobirthDate(String birth){
+    public void preencheOCampobirthDate(String birth) {
         wait.until(ExpectedConditions.visibilityOf(inputBirthDate));
         this.inputBirthDate.sendKeys(birth);
     }
 
-    public void selecionaGenderFemaleButtonFemale(String female){
+    public void selecionaGenderFemaleButtonFemale(String female) {
         wait.until(ExpectedConditions.visibilityOf(genderFemaleButtonFemale));
         this.genderFemaleButtonFemale.sendKeys(female);
     }
 
-    public void selecionaOCampoStreetAddress(String street){
+    public void selecionaOCampoStreetAddress(String street) {
         wait.until(ExpectedConditions.visibilityOf(inputStreetAddress));
         this.inputStreetAddress.sendKeys(street);
     }
 
-    public void country(){
+    public void country() {
         wait.until(ExpectedConditions.visibilityOf(selectCountry));
         this.selectCountry.click();
         this.optionCountry.click();
     }
 
-    public void zipCode(String zip){
+    public void zipCode(String zip) {
         wait.until(ExpectedConditions.visibilityOf(inputZipCode));
         this.inputZipCode.sendKeys(zip);
     }
 
-    public void city(String city){
+    public void city(String city) {
         wait.until(ExpectedConditions.visibilityOf(inputCity));
         this.inputCity.sendKeys(city);
     }
 
-    public void occupation(){
+    public void occupation() {
         wait.until(ExpectedConditions.visibilityOf(selectOccupation));
         this.selectOccupation.click();
         this.optionOccupation.click();
     }
 
-    public void speeding(){
+    public void speeding() {
         wait.until(ExpectedConditions.visibilityOf(buttonSpeeding));
         this.buttonSpeeding.click();
     }
 
-    public void nextEnterproductData(){
+    public void nextEnterproductData() {
         wait.until(ExpectedConditions.visibilityOf(nextEnterProductData));
         this.nextEnterProductData.click();
     }

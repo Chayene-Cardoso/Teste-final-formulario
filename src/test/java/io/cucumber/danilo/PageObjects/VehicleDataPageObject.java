@@ -33,7 +33,7 @@ public class VehicleDataPageObject {
     private WebElement btnNext;
     private WebElement abaEnterInsurantData;
 
-    public VehicleDataPageObject(WebDriver driver){
+    public VehicleDataPageObject(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 10);
         this.carregarElementos();
@@ -48,10 +48,10 @@ public class VehicleDataPageObject {
         inputEnginePerformance = driver.findElement(By.cssSelector("input[id='engineperformance']"));
         inputDateOfManufacture = driver.findElement(By.cssSelector("input[id='dateofmanufacture']"));
         selectNumberOfSeats = driver.findElement(By.cssSelector("select[id='numberofseats']"));
-        optionNumberOfSeats = driver.findElement(By.cssSelector("option[value='1']"));
+        optionNumberOfSeats = driver.findElement(By.cssSelector("select[id='numberofseats'] option[value='1']"));
         radioButtonYes = driver.findElement(By.cssSelector("input[value='Yes']"));
         selectNumberOfSeatsMotorCycle = driver.findElement(By.cssSelector("select[id='numberofseatsmotorcycle']"));
-        optionNumberOfSeatsMotorCycle = driver.findElement(By.cssSelector("option[value='2']"));
+        optionNumberOfSeatsMotorCycle = driver.findElement(By.cssSelector("select[id='numberofseatsmotorcycle'] option[value='2']"));
         selectFuel = driver.findElement(By.cssSelector("select[id='fuel']"));
         optionFuel = driver.findElement(By.cssSelector("option[value='Petrol']"));
         inputPayload = driver.findElement(By.cssSelector("input[id='payload']"));
@@ -63,87 +63,87 @@ public class VehicleDataPageObject {
         abaEnterInsurantData = driver.findElement(By.cssSelector("li[class='idealsteps-step-active']"));
     }
 
-    public void selecionaOCampoMake(){
+    public void selecionaOCampoMake() {
         wait.until(ExpectedConditions.visibilityOf(selectMake));
         this.selectMake.click();
         this.optionMake.click();
     }
 
-    public void selecionaOCampoModel(){
+    public void selecionaOCampoModel() {
         wait.until(ExpectedConditions.visibilityOf(selectModel));
         this.selectModel.click();
         this.optionModel.click();
     }
 
-    public void preencheCampoCylinderCapacity(String cylinder){
+    public void preencheCampoCylinderCapacity(String cylinder) {
         wait.until(ExpectedConditions.visibilityOf(inputCylinderCapacity));
         this.inputCylinderCapacity.sendKeys(cylinder);
     }
-    
-    public void preencheCampoEnginePerformance(String engine){
+
+    public void preencheCampoEnginePerformance(String engine) {
         wait.until((ExpectedConditions.visibilityOf(inputEnginePerformance)));
         this.inputEnginePerformance.sendKeys(engine);
     }
 
-    public void preencheCampoDateOfManufacture(String date){
+    public void preencheCampoDateOfManufacture(String date) {
         wait.until(ExpectedConditions.visibilityOf(inputDateOfManufacture));
         this.inputDateOfManufacture.sendKeys(date);
     }
 
-    public void selecionaOCampoNumberOfSeats(){
+    public void selecionaOCampoNumberOfSeats() {
         wait.until(ExpectedConditions.visibilityOf(selectNumberOfSeats));
         this.selectNumberOfSeats.click();
         this.optionNumberOfSeats.click();
     }
 
-    public void selecionaORadioButtonYes(){
+    public void selecionaORadioButtonYes() {
         wait.until(ExpectedConditions.visibilityOf(radioButtonYes));
         this.radioButtonYes.click();
     }
 
-    public void preencheOCampoNumberOfSeatsMotorCycle(){
+    public void preencheOCampoNumberOfSeatsMotorCycle() {
         wait.until(ExpectedConditions.visibilityOf(selectNumberOfSeatsMotorCycle));
         this.selectNumberOfSeatsMotorCycle.click();
         this.optionNumberOfSeatsMotorCycle.click();
     }
 
-    public void selecionaOCampoFuel(){
+    public void selecionaOCampoFuel() {
         wait.until(ExpectedConditions.visibilityOf(selectFuel));
         this.selectFuel.click();
         this.optionFuel.click();
     }
 
-    public void preencheOCampoPayload(String payload){
+    public void preencheOCampoPayload(String payload) {
         wait.until(ExpectedConditions.visibilityOf(inputPayload));
         this.inputPayload.sendKeys(payload);
     }
 
-    public void preencheOCampoTotalWeight(String total){
+    public void preencheOCampoTotalWeight(String total) {
         wait.until(ExpectedConditions.visibilityOf(inputTotalweight));
         this.inputTotalweight.sendKeys(total);
     }
 
-    public void preencheOCampolistPrice(String list){
+    public void preencheOCampolistPrice(String list) {
         wait.until(ExpectedConditions.visibilityOf(inputListPrice));
         this.inputListPrice.sendKeys(list);
     }
 
-    public void preencheOCampolicensePlateNumber(String license){
+    public void preencheOCampolicensePlateNumber(String license) {
         wait.until(ExpectedConditions.visibilityOf(inputLicensePlateNumber));
         this.inputLicensePlateNumber.sendKeys(license);
     }
 
-    public void preencheOCampoAnnualMileage(String annual){
+    public void preencheOCampoAnnualMileage(String annual) {
         wait.until(ExpectedConditions.visibilityOf(inputAnnualMileage));
         this.inputAnnualMileage.sendKeys(annual);
     }
 
-    public void clicaNoBotaoNext(){
+    public void clicaNoBotaoNext() {
         wait.until(ExpectedConditions.visibilityOf(btnNext));
         this.btnNext.click();
     }
 
-    public void verificaAbaEnterInsurantDataHabilitada(){
+    public void verificaAbaEnterInsurantDataHabilitada() {
         Assert.assertTrue(abaEnterInsurantData.isDisplayed());
     }
 }

@@ -1,13 +1,10 @@
 package io.cucumber.danilo.Steps;
 
-import io.cucumber.danilo.PageObjects.EnterInsurantDataPageObject;
-import io.cucumber.danilo.PageObjects.EnterProductDataPageObject;
-import io.cucumber.danilo.PageObjects.SelectPriceOptionPageObject;
-import io.cucumber.danilo.PageObjects.SendQuotePageObject;
-import io.cucumber.danilo.PageObjects.VehicleDataPageObject;
+import io.cucumber.danilo.PageObjects.*;
 import io.cucumber.java.After;
-import io.cucumber.java.it.Data;
-import io.cucumber.java.pt.*;
+import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Entao;
+import io.cucumber.java.pt.Quando;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -22,12 +19,12 @@ public class Steps {
     private SelectPriceOptionPageObject selectPriceOptionPageObject;
     private SendQuotePageObject sendQuotePageObject;
 
-    public Steps(){
+    public Steps() {
         System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
         ChromeDriverService service = new ChromeDriverService
-                                                        .Builder()
-                                                        .withWhitelistedIps("")
-                                                        .build();
+                .Builder()
+                .withWhitelistedIps("")
+                .build();
         driver = new ChromeDriver(service);
     }
 
@@ -47,6 +44,11 @@ public class Steps {
         vehicleDataPageObject.selecionaOCampoModel();
     }
 
+    @Quando("informar a capacidade {string} no campo Cylinder Capacity")
+    public void informarACapacidadeNoCampoCylinderCapacity(String capacidade) {
+        vehicleDataPageObject.preencheCampoCylinderCapacity(capacidade);
+    }
+
     @Quando("informar a performance {string} no campo Engine Performance")
     public void informarAPerformanceNoCampoEnginePerformance(String performance) {
         vehicleDataPageObject.preencheCampoEnginePerformance(performance);
@@ -62,9 +64,24 @@ public class Steps {
         vehicleDataPageObject.selecionaOCampoNumberOfSeats();
     }
 
+    @Quando("selecionar a opcao {string} no campo Number of Seats MotorCycle")
+    public void selecionarAOpcaoNoCampoNumberOfSeatsMotorCycle(String seats) {
+        vehicleDataPageObject.preencheOCampoNumberOfSeatsMotorCycle();
+    }
+
     @Quando("selecionar a opcao {string} no campo Fuel Type")
     public void selecionarAOpcaoNoCampoFuelType(String arg0) {
         vehicleDataPageObject.selecionaOCampoFuel();
+    }
+
+    @Quando("informar o peso {string} no campo Payload")
+    public void informarOPesoNoCampoDateOfManufacture(String peso) {
+        vehicleDataPageObject.preencheOCampoPayload(peso);
+    }
+
+    @Quando("informar o peso total {string} no campo Total Weight")
+    public void informarOPesoTotalNoCampoDateOfManufacture(String pesoTotal) {
+        vehicleDataPageObject.preencheOCampoTotalWeight(pesoTotal);
     }
 
     @Quando("informar o valor {string} no campo List Price")
@@ -88,63 +105,63 @@ public class Steps {
     }
 
     @Dado("eu devo visualizar a aba {string}")
-    public void euDevoVisualizarAAba() {
+    public void euDevoVisualizarAAba(String aba) {
         vehicleDataPageObject.verificaAbaEnterInsurantDataHabilitada();
+        enterInsurantDataPageObject = new EnterInsurantDataPageObject(driver);
     }
-    
-    
+
     @Quando("informar o nome {string} no campo First Name")
     public void informar_o_nome_no_campo_First_Name(String first) {
-       enterInsurantDataPageObject.preencheOCampoFirstName(first);
+        enterInsurantDataPageObject.preencheOCampoFirstName(first);
     }
-    
+
     @Quando("informar o sobrenome {string} no campo Last Name")
     public void informar_o_sobrenome_no_campo_Last_Name(String last) {
         enterInsurantDataPageObject.preencheOCampoLastName(last);
     }
-    
+
     @Quando("informar a data {string} no campo Date of Birth")
     public void informar_a_data_no_campo_Date_of_Birth(String birth) {
         enterInsurantDataPageObject.preencheOCampobirthDate(birth);
     }
-    
-    @Quando("selecionar a opcao female no campo Gender")
-    public void selecionar_a_opcao_female_no_campo_Gender(String female) {
+
+    @Quando("selecionar a opcao {string} no campo Gender")
+    public void selecionar_a_opcao_Female_no_campo_Gender(String female) {
         enterInsurantDataPageObject.selecionaGenderFemaleButtonFemale(female);
     }
-    
+
     @Quando("informar o endereco {string} no campo Street Address")
     public void informar_o_endereco_no_campo_Street_Address(String street) {
         enterInsurantDataPageObject.selecionaOCampoStreetAddress(street);
     }
-    
+
     @Quando("selecionar a opcao Brazil no campo Country")
     public void selecionar_a_opcao_Brazil_no_campo_Country() {
         enterInsurantDataPageObject.country();
     }
-    
+
     @Quando("informar o cep {string} no campo Zip Code")
     public void informar_o_cep_no_campo_Zip_Code(String zip) {
-       enterInsurantDataPageObject.zipCode(zip);
+        enterInsurantDataPageObject.zipCode(zip);
     }
-    
+
     @Quando("informar a cidade {string} no campo City")
     public void informar_a_cidade_no_campo_City(String city) {
         enterInsurantDataPageObject.city(city);
     }
-    
+
     @Quando("selecionar a opcao Employee no campo Occupation")
     public void selecionar_a_opcao_Employee_no_campo_Occupation() {
-       enterInsurantDataPageObject.occupation();
+        enterInsurantDataPageObject.occupation();
     }
-    
+
     @Quando("clicar na opcao Speeding no campo Hobbies")
     public void clicar_na_opcao_Speeding_no_campo_Hobbies() {
         enterInsurantDataPageObject.speeding();
     }
-    
-    @Entao("clicar no botao Next")
-    public void clicar_no_botao_Next() {
+
+    @Entao("clicar novamente no botao Next")
+    public void clicar_novamente_no_botao_Next() {
         enterInsurantDataPageObject.nextEnterproductData();
     }
 
@@ -174,8 +191,8 @@ public class Steps {
     }
 
     @Dado("selecionar a opcao Euro Protection no campo Optional Products")
-    public void selecionar_a_opcao_Euro_Protection_no_campo_Optional_Products(String euroProtection) {
-        enterProductDataPageObject.euroProtection(euroProtection);
+    public void selecionar_a_opcao_Euro_Protection_no_campo_Optional_Products() {
+        enterProductDataPageObject.euroProtection();
     }
 
     @Dado("selecionar a opcao Yes no campo Courtesy Car")
@@ -183,8 +200,8 @@ public class Steps {
         enterProductDataPageObject.courtesyCar();
     }
 
-    @Entao("clicar novamente no botao Next")
-    public void clicar_novamente_no_botao_Next() {
+    @Entao("clicar na parte do botao Next")
+    public void clicar_na_parte_do_botao_Next() {
         enterProductDataPageObject.nextSelectPriceOption();
     }
 
@@ -198,13 +215,13 @@ public class Steps {
         selectPriceOptionPageObject.selectUltimate();
     }
 
-    @Entao("clicar na parte do botao Next")
-    public void clicar_na_parte_do_botao_Next() {
+    @Entao("novamente clicar no botao Next")
+    public void novamente_clicar_no_botao_Next() {
         selectPriceOptionPageObject.btnNext();
     }
 
-    @Dado("que estou na ultima aba {string}")
-    public void que_estou_na_ultima_aba() {
+    @Dado("que estou na ultima aba Send Quota")
+    public void que_estou_na_ultima_aba_send_quota() {
         sendQuotePageObject = new SendQuotePageObject(driver);
     }
 
@@ -220,7 +237,7 @@ public class Steps {
 
     @Dado("informar o password {string} no campo Password")
     public void informar_o_password_no_campo_Password(String password) {
-       sendQuotePageObject.password(password);
+        sendQuotePageObject.password(password);
     }
 
     @Dado("informar o password {string} no campo Confirm Password")
@@ -232,7 +249,12 @@ public class Steps {
     public void clicar_no_botao_Send() {
         sendQuotePageObject.sendemail();
     }
-    
+
+    @Entao("devo visualizar a mensagem {string}")
+    public void devo_visualizar_a_mensagem(String message) {
+        sendQuotePageObject.verficarMessage(message);
+    }
+
     @After
     public void fim() {
         if (driver != null) {
